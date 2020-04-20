@@ -13,17 +13,20 @@
   yum:
     name:
       - wget
-      - perl
-      - cpp
-      - gcc
-      - make
-      - bzip2
-      - kernel-headers
-      - kernel-devel
-      - "kernel-devel-{{ kernel_release.stdout }}"
+      - unzip
+      - vim-enhanced
+      - bind-utils
+      - net-tools
+      - rsync
+      - policycoreutils-python
+      - rsyslog
       - "{{ packer_rhel_libselinux_package }}"
-      - elfutils-libelf-devel
-      - cifs-utils
+      - chrony
+      - sudo
+      - openssl
+      - epel-release
+      - figlet
+      - firewalld
     state: present
 
 # Fix slow DNS.
@@ -57,14 +60,6 @@
     owner: vagrant
     group: vagrant
     mode: 0700
-
-- name: Get Vagrant's public key.
-  get_url:
-    url: https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub
-    dest: /home/vagrant/.ssh/authorized_keys
-    owner: vagrant
-    group: vagrant
-    mode: 0600
 
 # VirtualBox tools installation.
 - name: Check if VirtualBox is running the guest VM.
