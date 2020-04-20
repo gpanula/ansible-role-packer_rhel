@@ -12,6 +12,19 @@
     state: mounted
     fstype: iso9660
 
+- name: Required packages for VirtualBox Add-ons
+  yum:
+    name:
+      - epel-release
+      - gcc
+      - kernel-devel
+      - kernel-headers
+      - dkms
+      - make
+      - bzip2
+      - perl
+    state: present
+
 - name: Run VirtualBox guest additions installation.
   command: sh /tmp/vbox/VBoxLinuxAdditions.run
   changed_when: true
